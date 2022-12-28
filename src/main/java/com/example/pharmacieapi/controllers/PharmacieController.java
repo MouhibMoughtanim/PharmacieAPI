@@ -16,15 +16,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("pharmacies")
+@RequestMapping("/pharmacies")
 public class PharmacieController {
 
 	@Autowired
 	private PharmacieRepository repository;
 
 	@PostMapping("/save")
-	public void save(@RequestBody Pharmacie Pharmacie) {
-		repository.save(Pharmacie);
+	public Pharmacie save(@RequestBody Pharmacie Pharmacie) {
+		return repository.save(Pharmacie);
 	}
 
 	@DeleteMapping("/delete/{id}")

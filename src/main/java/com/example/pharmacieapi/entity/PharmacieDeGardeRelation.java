@@ -2,15 +2,17 @@ package com.example.pharmacieapi.entity;
 
 
 
+import java.io.Serializable;
 import java.util.Date;
 
 import jakarta.persistence.Embeddable;
 
 @Embeddable
-public class PharmacieDeGardeRelation  {
+public class PharmacieDeGardeRelation implements Serializable {
 
 
-	private int pharmaciePK;
+    private static final long serialVersionUID = -774219158085458915L;
+    private int pharmaciePK;
 	private int gardePK;
 	private Date dateDebut;
 
