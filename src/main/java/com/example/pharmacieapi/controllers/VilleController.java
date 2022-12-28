@@ -6,54 +6,45 @@ import java.util.List;
 import com.example.pharmacieapi.entity.Ville;
 import com.example.pharmacieapi.entity.Zone;
 import com.example.pharmacieapi.repositories.VilleRepository;
+import com.example.pharmacieapi.service.VilleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
 @RestController
 @RequestMapping("/villes")
+@CrossOrigin("http://localhost:3000")
 public class VilleController {
 
 	@Autowired
-	private VilleRepository repository;
+	private VilleService service;
 
-	@PostMapping("/save")
-	public Ville save(@RequestBody Ville ville) {
-		return repository.save(ville);
-
-	}
-
-	@DeleteMapping("/delete/{id}")
-	public void delete(@PathVariable(required = true) String id) {
-		Ville s = repository.findById(Integer.parseInt(id));
-		repository.delete(s);
+	@PostMapping("/add")
+	public Ville save(@RequestBody Ville v) {
+		return service.addVille(v);
 	}
 
 	@GetMapping("/all")
-	public List<Ville> findAll() {
-		return repository.findAll();
+	public List<Ville> findAllVille(){
+
+		return service.findAllVille();
 	}
 
-	@GetMapping(value = "/count")
-	public long countVille() {
-		return repository.count();
-	}
-    
-	@GetMapping("/zonesByVille/{id}")
-	public List<Zone> findZone(@PathVariable(required = true) String id) {
-		Ville s = repository.findById(Integer.parseInt(id));
-		return s.getZones();
+	@GetMapping("/ville/id={id}")
+	public Ville findVilleById(@PathVariable int id){
+
+		return service.findVilleById(id);
 	}
 
-	@GetMapping("/getVilleById/{id}")
-	public Ville getVilleById(@PathVariable(value = "id") int id){
-		return repository.findById(id);
+	@PutMapping("/updateVille/id={id}")
+	public Ville updateVille(@RequestBody Ville v,@PathVariable int id){
+
+		return service.updateVille(v,id);
 	}
 
-	@PutMapping("/update/{id}")
-	public void updateById(@PathVariable(value = "id") int id,@RequestBody Ville ville){
-		Ville v = repository.findById(id);
-		v.setNom(ville.getNom());
-		repository.save(v);
+	@DeleteMapping("deleteVille/id={id}")
+	public String deleteClient(@PathVariable int id){
+
+		return service.deleteVille(id);
 	}
 }

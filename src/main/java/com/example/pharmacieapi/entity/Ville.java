@@ -4,58 +4,28 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
-@Entity
+@Entity(name = "Ville")
+@Table(name = "Ville")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Ville {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-
 	private String nom;
 
-	@OneToMany(mappedBy = "ville", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "ville",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	@JsonIgnore
 	private List<Zone> zones;
 
-	public String getNom() {
-		return nom;
-	}
 
-	public Ville(String nom) {
-		this.nom = nom;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-
-	public List<Zone> getZones() {
-		return zones;
-	}
-
-	public void setZones(List<Zone> zones) {
-		this.zones = zones;
-	}
-
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-
-	public Ville() {
-
-	}
 
 }

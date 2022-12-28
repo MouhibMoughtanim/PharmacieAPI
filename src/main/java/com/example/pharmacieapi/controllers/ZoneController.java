@@ -3,87 +3,69 @@ package com.example.pharmacieapi.controllers;
 
 import java.util.List;
 
+import com.example.pharmacieapi.entity.Ville;
 import com.example.pharmacieapi.entity.Zone;
 import com.example.pharmacieapi.repositories.ZoneRepository;
+import com.example.pharmacieapi.service.VilleService;
+import com.example.pharmacieapi.service.ZoneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
 @RestController
 @RequestMapping("/zones")
+@CrossOrigin("http://localhost:3000")
 public class ZoneController {
 
 	@Autowired
-	private ZoneRepository repository;
+	private ZoneService service;
 
-	@PostMapping("/save")
-	public void save(@RequestBody Zone Zone) {
-		repository.save(Zone);
-	}
+	@Autowired
+	private VilleService vservice;
 
-	@DeleteMapping("/delete/{id}")
-	public void delete(@PathVariable(required = true) String id) {
-		Zone s = repository.findById(Integer.parseInt(id));
-		repository.delete(s);
+	@PostMapping("/add")
+	public Zone save(@RequestParam("nom") String nom,
+					 @RequestParam("ville_id") int ville_id) {
+		Zone z = new Zone();
+		Ville v = new Ville();
+		v = vservice.findVilleById(ville_id);
+		z.setNom(nom);
+		z.setVille(v);
+		return service.addZone(z);
 	}
 
 	@GetMapping("/all")
-	public List<Zone> findAll() {
-		return repository.findAll();
+	public List<Zone> findAllZone(){
+
+		return service.findAllZone();
 	}
 
-	@GetMapping(value = "/count")
-	public long countZone() {
-		return repository.count();
+	@GetMapping("/zone/id={id}")
+	public Zone findZoneById(@PathVariable int id){
+
+		return service.findZoneById(id);
 	}
 
-	@PutMapping("/update/{id}")
-	public void updateById(@PathVariable(value = "id") int id,@RequestBody Zone zone){
-		Zone z = repository.findById(id);
-		z.setNom(zone.getNom());
-		z.setVille(zone.getVille());
-		repository.save(z);
+	@GetMapping("/zone/ville={id}")
+	public List<Zone> findAllZoneByVille(@PathVariable int id){
+
+		return service.findAllZoneByVille(id);
 	}
 
-	@GetMapping("/getZoneById/{id}")
-	public Zone getZoneById(@PathVariable(value = "id") int id){
-		return repository.findById(id);
+	@PutMapping("/updateZone/id={id}")
+	public Zone updateZone(@RequestParam("nom") String nom,
+						   @RequestParam("ville_id") int ville_id,@PathVariable int id){
+		Zone z = new Zone();
+		Ville v = new Ville();
+		v = vservice.findVilleById(ville_id);
+		z.setNom(nom);
+		z.setVille(v);
+		return service.updateZone(z,id);
+	}
+
+	@DeleteMapping("deleteZone/id={id}")
+	public String deleteZone(@PathVariable int id){
+
+		return service.deleteZone(id);
 	}
 }
-/*	@PutMapping("/user/{id}")
-	public User updateUser(@PathVariable("id") final int id, @RequestBody User user) {
-		Optional<User> e = userService.getUserById(id);
-		if(e.isPresent()) {
-			User currentUser = e.get();
-
-			String nom = user.getNom();
-			if(nom != null) {
-				currentUser.setNom(nom);
-			}
-			String prenom = user.getPrenom();
-			if(prenom != null) {
-				currentUser.setPrenom(prenom);
-			}
-			String email = user.getEmail();
-			if(email != null) {
-				currentUser.setEmail(email);
-			}
-			String genre = user.getGenre();
-			if(genre != null) {
-				currentUser.setGenre(genre);
-			}
-			Date dateNaissance = user.getDateNaissance();
-			if(dateNaissance != null){
-				currentUser.setDateNaissance(dateNaissance);
-			}
-			int telephone = user.getTelephone();
-			if (String.valueOf(telephone) != null){
-				currentUser.setTelephone(telephone);
-			}
-
-			userService.saveUser(currentUser);
-			return currentUser;
-		} else {
-			return null;
-		}
-	}*/
