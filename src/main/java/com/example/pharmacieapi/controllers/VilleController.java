@@ -47,4 +47,9 @@ public class VilleController {
 
 		return service.deleteVille(id);
 	}
+
+	@GetMapping("/NbrPharmacie")
+	public List findNbrPharmacieVille(){
+		return service.findNbrPharmacieVille();
+	}
 }

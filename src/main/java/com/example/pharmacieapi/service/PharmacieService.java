@@ -82,4 +82,5 @@ public class PharmacieService {
     public List<Pharmacie> findAllPharmacieByZone(int id) {
         return repository.findAllPharmacieByZone(id);
     }
+
 }

@@ -45,4 +45,8 @@ public class ZoneService {
     public List<Zone> findAllZoneByVille(int id) {
         return repository.findAllZoneByVille(id);
     }
+
+    public List findNbrPharmacieZone(int id) {
+        return repository.findNbrPharmacieZone(id);
+    }
 }

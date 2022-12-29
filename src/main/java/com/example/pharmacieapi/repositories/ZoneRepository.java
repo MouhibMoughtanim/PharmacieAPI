@@ -13,4 +13,7 @@ public interface ZoneRepository extends JpaRepository<Zone, Integer> {
 	@Query("select z from Zone z where z.ville.id =:id")
 	List<Zone> findAllZoneByVille(@Param("id") int id);
 
+	@Query("select z.nom ,(select count(p) from Pharmacie p where p.zone.id=z.id) from Zone z where z.ville.id=:id group by z.nom")
+	List findNbrPharmacieZone(@Param("id") int id);
+
 }
