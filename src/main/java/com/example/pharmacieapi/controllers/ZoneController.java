@@ -68,4 +68,9 @@ public class ZoneController {
 
 		return service.deleteZone(id);
 	}
+
+	@GetMapping("/NbrPharmacieZone/ville={id}")
+	public List findNbrPharmacieZone(@PathVariable int id){
+		return service.findNbrPharmacieZone(id);
+	}
 }

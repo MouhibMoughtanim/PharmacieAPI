@@ -40,4 +40,8 @@ public class VilleService {
                 }
         ).orElse(null);
     }
+
+    public List findNbrPharmacieVille() {
+        return repository.findNbrPharmacieVille();
+    }
 }

@@ -80,4 +80,5 @@ public class PharmacieController {
 	public String deletePharmacie(@PathVariable int id){
 		return service.deletePharmacie(id);
 	}
+
 }
