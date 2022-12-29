@@ -11,16 +11,14 @@ import jakarta.persistence.Embeddable;
 public class PharmacieDeGardeRelation implements Serializable {
 
 
-    private static final long serialVersionUID = -774219158085458915L;
     private int pharmaciePK;
 	private int gardePK;
-	private Date dateDebut;
 
-	public PharmacieDeGardeRelation(int pharmaciePK, int gardePK, Date dateDebut) {
+
+	public PharmacieDeGardeRelation(int pharmaciePK, int gardePK) {
 		super();
 		this.pharmaciePK = pharmaciePK;
 		this.gardePK = gardePK;
-		this.setDateDebut(dateDebut);
 	}
 
 	public int getPharmaciePK() {
@@ -39,13 +37,7 @@ public class PharmacieDeGardeRelation implements Serializable {
 		this.gardePK = gardePK;
 	}
 
-	public Date getDateDebut() {
-		return dateDebut;
-	}
 
-	public void setDateDebut(Date dateDebut) {
-		this.dateDebut = dateDebut;
-	}
 
 	public PharmacieDeGardeRelation() {
 		super();

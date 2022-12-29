@@ -76,7 +76,7 @@ public class PharmacieController {
 		return service.updatePharmacie(p,id);
 	}
 
-	@DeleteMapping("deletePharmacie/id={id}")
+	@DeleteMapping("/deletePharmacie/id={id}")
 	public String deletePharmacie(@PathVariable int id){
 		return service.deletePharmacie(id);
 	}

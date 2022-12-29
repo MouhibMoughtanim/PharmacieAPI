@@ -63,7 +63,7 @@ public class ZoneController {
 		return service.updateZone(z,id);
 	}
 
-	@DeleteMapping("deleteZone/id={id}")
+	@DeleteMapping("/deleteZone/id={id}")
 	public String deleteZone(@PathVariable int id){
 
 		return service.deleteZone(id);

@@ -42,7 +42,7 @@ public class VilleController {
 		return service.updateVille(v,id);
 	}
 
-	@DeleteMapping("deleteVille/id={id}")
+	@DeleteMapping("/deleteVille/id={id}")
 	public String deleteClient(@PathVariable int id){
 
 		return service.deleteVille(id);

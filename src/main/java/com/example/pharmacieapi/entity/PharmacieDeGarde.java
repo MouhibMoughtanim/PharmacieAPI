@@ -2,30 +2,31 @@ package com.example.pharmacieapi.entity;
 
 import java.util.Date;
 
-import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 
 @Entity
 public class PharmacieDeGarde {
 
 	@EmbeddedId
-	private PharmacieDeGardeRelation PharmacieDeGardeRelation;
+	private PharmacieDeGardeRelation PharmacieDeGardeRelation = new PharmacieDeGardeRelation();
 
 	private Date dateFin;
+	private Date dateDebut;
 
-	@ManyToOne
-	@JoinColumn(name = "pharmaciePK", insertable = false, updatable = false)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "pharmaciePK",nullable = false, insertable = false, updatable = false)
+	@MapsId("pharmaciePK")
 	private Pharmacie pharmacie;
-	@ManyToOne
-	@JoinColumn(name = "gardePK", insertable = false, updatable = false)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "gardePK", nullable = false, insertable = false, updatable = false)
+	@MapsId("gardePK")
 	private Garde garde;
 
-	public PharmacieDeGarde(PharmacieDeGardeRelation pharmacieDeGardeRelation, Date dateFin) {
+	public PharmacieDeGarde(PharmacieDeGardeRelation pharmacieDeGardeRelation, Date dateFin,Date dateDebut) {
 		super();
 		PharmacieDeGardeRelation = pharmacieDeGardeRelation;
 		this.dateFin = dateFin;
+		this.dateDebut =dateDebut;
 	}
 
 	public PharmacieDeGardeRelation getPharmacieDeGardePK() {
@@ -58,6 +59,22 @@ public class PharmacieDeGarde {
 
 	public void setGarde(Garde garde) {
 		this.garde = garde;
+	}
+
+	public Date getDateDebut() {
+		return dateDebut;
+	}
+
+	public void setDateDebut(Date dateDebut) {
+		this.dateDebut = dateDebut;
+	}
+
+	public com.example.pharmacieapi.entity.PharmacieDeGardeRelation getPharmacieDeGardeRelation() {
+		return PharmacieDeGardeRelation;
+	}
+
+	public void setPharmacieDeGardeRelation(com.example.pharmacieapi.entity.PharmacieDeGardeRelation pharmacieDeGardeRelation) {
+		PharmacieDeGardeRelation = pharmacieDeGardeRelation;
 	}
 
 	public PharmacieDeGarde() {
