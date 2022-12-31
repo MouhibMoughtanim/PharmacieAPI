@@ -10,9 +10,7 @@ public class PharmacieDeGarde {
 
 	@EmbeddedId
 	private PharmacieDeGardeRelation PharmacieDeGardeRelation = new PharmacieDeGardeRelation();
-	@JsonFormat(shape = JsonFormat.Shape.STRING,pattern="yyyy-MM-dd'T'HH:mm:ss")
 	private Date dateFin;
-	@JsonFormat(shape = JsonFormat.Shape.STRING,pattern="yyyy-MM-dd'T'HH:mm:ss")
 	private Date dateDebut;
 
 	@ManyToOne(fetch = FetchType.EAGER)

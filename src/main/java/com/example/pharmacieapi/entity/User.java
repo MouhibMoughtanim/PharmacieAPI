@@ -1,5 +1,6 @@
 package com.example.pharmacieapi.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -19,7 +20,9 @@ public class User {
     @Transient
     private Date updated_at;
 
-    private boolean etat;
+    @OneToOne(mappedBy = "user")
+   @JsonIgnore
+    private Pharmacie pharmacie;
 
     public int getUser_id() {
         return user_id;
@@ -77,11 +80,11 @@ public class User {
         this.updated_at = updated_at;
     }
 
-    public boolean isEtat() {
-        return etat;
+    public Pharmacie getPharmacie() {
+        return pharmacie;
     }
 
-    public void setEtat(boolean etat) {
-        this.etat = etat;
+    public void setPharmacie(Pharmacie pharmacie) {
+        this.pharmacie = pharmacie;
     }
 }

@@ -33,4 +33,10 @@ public class Pharmacie {
 	@JsonIgnore
 	private List<PharmacieDeGarde> gardes ;
 
+	@OneToOne
+	@JoinColumn(name = "user_id")
+
+	private User user;
+
+
 }
