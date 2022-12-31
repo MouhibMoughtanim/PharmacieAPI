@@ -1,6 +1,7 @@
 package com.example.pharmacieapi.repositories;
 
 import com.example.pharmacieapi.entity.Pharmacie;
+import com.example.pharmacieapi.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -12,6 +13,8 @@ public interface PharmacieRepository extends JpaRepository<Pharmacie, Integer> {
 
 	@Query("select p from Pharmacie p where p.etat=0")
 	List<Pharmacie> findAllPharmacieAttente();
+
+	Pharmacie findPharmacieByUser(User user);
 
 	@Query("select p from Pharmacie p where p.etat=1")
 	List<Pharmacie> findAllPharmacieAccepte();

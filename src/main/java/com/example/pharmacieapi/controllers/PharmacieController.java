@@ -3,8 +3,11 @@ package com.example.pharmacieapi.controllers;
 import java.util.List;
 
 import com.example.pharmacieapi.entity.Pharmacie;
+import com.example.pharmacieapi.entity.User;
 import com.example.pharmacieapi.repositories.PharmacieRepository;
+import com.example.pharmacieapi.repositories.UserRepository;
 import com.example.pharmacieapi.service.PharmacieService;
+import com.example.pharmacieapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,10 +19,14 @@ public class PharmacieController {
 
 	@Autowired
 	private PharmacieService service;
+	@Autowired
+	private UserRepository userRepository;
 
-	@PostMapping("/add")
-	public Pharmacie save(@RequestBody Pharmacie p) {
+	@PostMapping("/add/{user_id}")
+	public Pharmacie save(@RequestBody Pharmacie p,@PathVariable int user_id) {
 		p.setEtat(0);
+		User user = userRepository.findById(user_id).get();
+		p.setUser(user);
 		return service.addPharmacie(p);
 	}
 
@@ -47,6 +54,11 @@ public class PharmacieController {
 	public Pharmacie findPharmacieById(@PathVariable int id){
 		return service.findPharmacieById(id);
 	}
+
+	@GetMapping("/pharmacie/user_id={id}")
+	public Pharmacie findPharmacieByUserId(@PathVariable int id){
+		User user = userRepository.findById(id).get();
+		return service.findPharmacieByUser(user);}
 
 	@GetMapping("/pharmacie/ville={id}")
 	public List<Pharmacie> findPharmacieByVille(@PathVariable int id){

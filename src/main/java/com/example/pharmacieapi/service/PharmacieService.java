@@ -1,6 +1,7 @@
 package com.example.pharmacieapi.service;
 
 import com.example.pharmacieapi.entity.Pharmacie;
+import com.example.pharmacieapi.entity.User;
 import com.example.pharmacieapi.repositories.PharmacieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,10 @@ public class PharmacieService {
 
     public Pharmacie addPharmacie(Pharmacie p){
         return repository.save(p);
+    }
+
+    public Pharmacie findPharmacieByUser(User user){
+        return repository.findPharmacieByUser(user);
     }
 
     public List<Pharmacie> findAllPharmacie(){

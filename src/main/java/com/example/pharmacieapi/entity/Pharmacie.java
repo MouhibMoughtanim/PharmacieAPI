@@ -35,6 +35,7 @@ public class Pharmacie {
 
 	@OneToOne
 	@JoinColumn(name = "user_id")
+	@JsonIgnore
 
 	private User user;
 
