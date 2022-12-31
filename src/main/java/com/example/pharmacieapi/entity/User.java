@@ -21,7 +21,7 @@ public class User {
     private Date updated_at;
 
     @OneToOne(mappedBy = "user")
-   @JsonIgnore
+    @JsonIgnore
     private Pharmacie pharmacie;
 
     public int getUser_id() {
