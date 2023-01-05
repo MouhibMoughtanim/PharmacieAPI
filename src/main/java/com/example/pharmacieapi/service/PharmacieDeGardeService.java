@@ -1,6 +1,8 @@
 package com.example.pharmacieapi.service;
 
 
+import com.example.pharmacieapi.entity.Garde;
+import com.example.pharmacieapi.entity.Pharmacie;
 import com.example.pharmacieapi.entity.PharmacieDeGarde;
 import com.example.pharmacieapi.repositories.PharmacieDeGardeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +16,15 @@ public class PharmacieDeGardeService {
     private PharmacieDeGardeRepository repository;
 
     public PharmacieDeGarde addPharmacieDeGarde(PharmacieDeGarde p){
-        return repository.save(p);
+
+    return repository.save(p);
     }
     public List<PharmacieDeGarde> getAllPharmaciesDeGarde(){
         return repository.findAll();
     }
+    public List<PharmacieDeGarde> getAllPharmaciesDeGardeByPharmacie(Pharmacie pharmacie){
+        return repository.findAllByPharmacie(pharmacie);
+    }
+
 
 }

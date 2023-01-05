@@ -1,5 +1,6 @@
 package com.example.pharmacieapi.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -13,7 +14,6 @@ import lombok.NoArgsConstructor;
 @Table(name = "Pharmacie")
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 public class Pharmacie {
 
 	@Id
@@ -27,17 +27,25 @@ public class Pharmacie {
 
 	@ManyToOne
 	@JoinColumn(name = "zone_id")
+	@JsonIgnore
 	private Zone zone;
 
-	@OneToMany(mappedBy = "pharmacie",fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "pharmacie")
 	@JsonIgnore
 	private List<PharmacieDeGarde> gardes ;
 
-	@OneToOne
+	@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "user_id")
 	@JsonIgnore
 
 	private User user;
+	public void addPharmacieDeGarde(PharmacieDeGarde garde){
+		this.gardes.add(garde);
+		garde.setPharmacie(this);
+	}
 
+	public Pharmacie() {
+		this.gardes=new ArrayList<>();
 
+	}
 }

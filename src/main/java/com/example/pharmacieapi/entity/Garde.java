@@ -1,5 +1,6 @@
 package com.example.pharmacieapi.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -28,12 +29,18 @@ public class Garde {
 		this.type = type;
 	}
 
+	public void addPharmacieDeGarde(PharmacieDeGarde garde){
+		this.gardes.add(garde);
+		garde.setGarde(this);
+	}
+
 	public Garde(String type) {
 		this.type = type;
 	}
 
 	public Garde() {
 		super();
+		this.gardes=new ArrayList<>();
 	}
 
 	public String getType() {

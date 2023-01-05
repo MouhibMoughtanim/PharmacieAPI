@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface UserRepository extends CrudRepository<User, Integer> {
@@ -22,8 +23,6 @@ public interface UserRepository extends CrudRepository<User, Integer> {
 
     @Query(value = " SELECT * FROM users WHERE email = :email", nativeQuery = true)
     User GetUserDetailsByEmail(@Param("email") String email);
-
-
 
 
     @Transactional

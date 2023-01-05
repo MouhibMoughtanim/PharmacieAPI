@@ -11,7 +11,6 @@ public class PharmacieDeGarde {
 	@EmbeddedId
 	private PharmacieDeGardeRelation PharmacieDeGardeRelation = new PharmacieDeGardeRelation();
 	private Date dateFin;
-	private Date dateDebut;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "pharmaciePK",nullable = false, insertable = false, updatable = false)
@@ -22,11 +21,13 @@ public class PharmacieDeGarde {
 	@MapsId("gardePK")
 	private Garde garde;
 
+
+
 	public PharmacieDeGarde(PharmacieDeGardeRelation pharmacieDeGardeRelation, Date dateFin,Date dateDebut) {
 		super();
 		PharmacieDeGardeRelation = pharmacieDeGardeRelation;
 		this.dateFin = dateFin;
-		this.dateDebut =dateDebut;
+
 	}
 
 	public PharmacieDeGardeRelation getPharmacieDeGardePK() {
@@ -61,13 +62,7 @@ public class PharmacieDeGarde {
 		this.garde = garde;
 	}
 
-	public Date getDateDebut() {
-		return dateDebut;
-	}
 
-	public void setDateDebut(Date dateDebut) {
-		this.dateDebut = dateDebut;
-	}
 
 	public com.example.pharmacieapi.entity.PharmacieDeGardeRelation getPharmacieDeGardeRelation() {
 		return PharmacieDeGardeRelation;

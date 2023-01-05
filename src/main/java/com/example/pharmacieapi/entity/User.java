@@ -20,7 +20,7 @@ public class User {
     @Transient
     private Date updated_at;
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user",fetch=FetchType.EAGER)
     private Pharmacie pharmacie;
 
     public int getUser_id() {

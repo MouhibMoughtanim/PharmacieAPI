@@ -21,6 +21,8 @@ public class PharmacieController {
 	private PharmacieService service;
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	 private UserService userService;
 
 	@PostMapping("/add/{user_id}")
 	public Pharmacie save(@RequestBody Pharmacie p,@PathVariable int user_id) {
@@ -57,7 +59,9 @@ public class PharmacieController {
 
 	@GetMapping("/pharmacie/user_id={id}")
 	public Pharmacie findPharmacieByUserId(@PathVariable int id){
-		User user = userRepository.findById(id).get();
+
+		System.out.println(id +"hahouwa ");
+		User user = userService.getUserById(id);
 		return service.findPharmacieByUser(user);}
 
 	@GetMapping("/pharmacie/ville={id}")

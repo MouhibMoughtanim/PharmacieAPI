@@ -21,7 +21,6 @@ public class Zone {
 	private String nom;
 
 	@OneToMany(mappedBy = "zone",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	@JsonIgnore
 	private List<Pharmacie> pharmacies;
 
 	@ManyToOne
