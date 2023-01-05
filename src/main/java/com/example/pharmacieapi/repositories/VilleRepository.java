@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface VilleRepository extends JpaRepository<Ville, Integer> {
 
-    @Query("select v.nom ,(select count(p) from Pharmacie p where p.zone.ville.id=v.id) from Ville v group by v.nom")
+    @Query("select v.nom ,(select count(p) from Pharmacie p where p.zone.ville.id=v.id and p.etat=1) from Ville v group by v.nom")
     List<Object> findNbrPharmacieVille();
 
 }
