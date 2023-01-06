@@ -28,4 +28,10 @@ public interface PharmacieRepository extends JpaRepository<Pharmacie, Integer> {
 	@Query("select p from Pharmacie p where p.zone.id =:id and p.etat=1")
 	List<Pharmacie> findAllPharmacieByZone(@Param("id") int id);
 
+	@Query("select p from Pharmacie p where p.zone.ville.id =:id and p.etat=1 and p.id not in(select pg.PharmacieDeGardeRelation.pharmaciePK from PharmacieDeGarde pg where CURRENT_DATE BETWEEN pg.PharmacieDeGardeRelation.dateDebut and pg.dateFin or CURRENT_DATE <pg.PharmacieDeGardeRelation.dateDebut )")
+	List<Pharmacie> findPharmcieDispoByVille(@Param("id") int id);
+
+	@Query("select p from Pharmacie p where p.zone.id =:id and p.etat=1 and p.id not in(select pg.PharmacieDeGardeRelation.pharmaciePK from PharmacieDeGarde pg where CURRENT_DATE BETWEEN pg.PharmacieDeGardeRelation.dateDebut and pg.dateFin or CURRENT_DATE <pg.PharmacieDeGardeRelation.dateDebut )")
+	List<Pharmacie> findPharmcieDispoByZone(@Param("id") int id);
+
 }

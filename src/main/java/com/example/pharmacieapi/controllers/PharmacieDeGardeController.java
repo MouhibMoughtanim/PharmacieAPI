@@ -139,6 +139,11 @@ public class PharmacieDeGardeController {
     public List<PharmacieDeGarde> findPharmacieGardeByZone(@PathVariable int id){
         return service.findAllPharmacieGardeByZone(id);
     }
+
+    @GetMapping("/Historique/id={id}")
+    public List<PharmacieDeGarde> findPharmacieGardeHistorique(@PathVariable int id){
+        return service.getPharmacieDeGardeHistorique(id);
+    }
     @GetMapping("/all/user_id={user_id}")
     public List<PharmacieDeGarde> getAllPharmaciesDeGardeByPharmacieId(@PathVariable int user_id) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");

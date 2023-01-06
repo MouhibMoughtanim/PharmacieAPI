@@ -26,6 +26,10 @@ public class PharmacieDeGardeService {
         return repository.findAllByPharmacie(pharmacie);
     }
 
+    public List<PharmacieDeGarde> getPharmacieDeGardeHistorique(int id){
+        return repository.findPharmacieGardeHistorique(id);
+    }
+
     public List<PharmacieDeGarde> getAllPharmaciesDeGardeDispo() {
         return repository.findAllPharmacieDispo();
     }

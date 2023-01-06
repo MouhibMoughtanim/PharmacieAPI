@@ -52,6 +52,16 @@ public class PharmacieController {
 		return service.findAllPharmacieRefus();
 	}
 
+	@GetMapping("/allDispoByVille/id={id}")
+	public List<Pharmacie> findAllPharmacieDispoByVille(@PathVariable int id){
+		return service.findAllPharmacieDispoByVille(id);
+	}
+
+	@GetMapping("/allDispoByZone/id={id}")
+	public List<Pharmacie> findAllPharmacieDispoByZone(@PathVariable int id){
+		return service.findAllPharmacieDispoByZone(id);
+	}
+
 	@GetMapping("/pharmacie/id={id}")
 	public Pharmacie findPharmacieById(@PathVariable int id){
 		return service.findPharmacieById(id);

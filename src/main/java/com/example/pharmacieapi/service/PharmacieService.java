@@ -88,4 +88,11 @@ public class PharmacieService {
         return repository.findAllPharmacieByZone(id);
     }
 
+    public List<Pharmacie> findAllPharmacieDispoByVille(int id) {
+        return repository.findPharmcieDispoByVille(id);
+    }
+
+    public List<Pharmacie> findAllPharmacieDispoByZone(int id) {
+        return repository.findPharmcieDispoByZone(id);
+    }
 }
