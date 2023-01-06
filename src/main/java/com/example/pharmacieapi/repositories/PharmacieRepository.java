@@ -28,4 +28,6 @@ public interface PharmacieRepository extends JpaRepository<Pharmacie, Integer> {
 	@Query("select p from Pharmacie p where p.zone.id =:id and p.etat=1")
 	List<Pharmacie> findAllPharmacieByZone(@Param("id") int id);
 
+
+
 }
