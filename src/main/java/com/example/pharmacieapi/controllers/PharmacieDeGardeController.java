@@ -18,6 +18,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/pharmaciesDeGarde")
+@CrossOrigin("http://localhost:3000")
 public class PharmacieDeGardeController {
 
     @Autowired
@@ -63,6 +64,56 @@ public class PharmacieDeGardeController {
         {
             java.util.Date utilDate1 = sdf.parse(String.valueOf(p.getPharmacieDeGardePK().getDateDebut()));
           java.util.Date utilDate2 = sdf.parse(String.valueOf(p.getDateFin()));
+
+            // Convert the java.util.Date object to a java.sql.Date object
+            long millis1 = utilDate1.getTime();
+            long millis2 = utilDate2.getTime();
+
+            java.sql.Date debutSql = new java.sql.Date(millis1);
+            java.sql.Date finSql = new java.sql.Date(millis2);
+
+            p.getPharmacieDeGardePK().setDateDebut(debutSql);
+            p.setDateFin(finSql);
+
+            pharmacieDeGardes.add(p);
+        }
+        return pharmacieDeGardes ;
+    }
+
+    @GetMapping("/allDispo")
+    public List<PharmacieDeGarde> getAllPharmaciesDeGardeDispo() throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        List<PharmacieDeGarde> pharmacieDeGardes = new ArrayList<>();
+
+        for (PharmacieDeGarde p: service.getAllPharmaciesDeGardeDispo())
+        {
+            java.util.Date utilDate1 = sdf.parse(String.valueOf(p.getPharmacieDeGardePK().getDateDebut()));
+            java.util.Date utilDate2 = sdf.parse(String.valueOf(p.getDateFin()));
+
+            // Convert the java.util.Date object to a java.sql.Date object
+            long millis1 = utilDate1.getTime();
+            long millis2 = utilDate2.getTime();
+
+            java.sql.Date debutSql = new java.sql.Date(millis1);
+            java.sql.Date finSql = new java.sql.Date(millis2);
+
+            p.getPharmacieDeGardePK().setDateDebut(debutSql);
+            p.setDateFin(finSql);
+
+            pharmacieDeGardes.add(p);
+        }
+        return pharmacieDeGardes ;
+    }
+
+    @GetMapping("/allEnGarde")
+    public List<PharmacieDeGarde> getAllPharmaciesDeGardeEnGarde() throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        List<PharmacieDeGarde> pharmacieDeGardes = new ArrayList<>();
+
+        for (PharmacieDeGarde p: service.getAllPharmaciesDeGardeEnGarde())
+        {
+            java.util.Date utilDate1 = sdf.parse(String.valueOf(p.getPharmacieDeGardePK().getDateDebut()));
+            java.util.Date utilDate2 = sdf.parse(String.valueOf(p.getDateFin()));
 
             // Convert the java.util.Date object to a java.sql.Date object
             long millis1 = utilDate1.getTime();
