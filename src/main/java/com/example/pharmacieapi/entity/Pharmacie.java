@@ -21,6 +21,7 @@ public class Pharmacie {
 	private int id;
 	private String nom;
 	private String adresse;
+	private String telephone;
 	private Double lat;
 	private Double log;
 	private int etat;

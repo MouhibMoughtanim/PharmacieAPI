@@ -106,5 +106,9 @@ public class PharmacieController {
 	public String deletePharmacie(@PathVariable int id){
 		return service.deletePharmacie(id);
 	}
+	@GetMapping("/pharmacie/garde={id}")
+	public List<Pharmacie> findAllPharmacieByGarde(@PathVariable int id){
+		return service.findAllPharmacieByGarde(id);
+	}
 
 }

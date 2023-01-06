@@ -1,11 +1,13 @@
 package com.example.pharmacieapi.service;
 
 import com.example.pharmacieapi.entity.Pharmacie;
+import com.example.pharmacieapi.entity.PharmacieDeGarde;
 import com.example.pharmacieapi.entity.User;
 import com.example.pharmacieapi.repositories.PharmacieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -13,6 +15,8 @@ public class PharmacieService {
 
     @Autowired
     private PharmacieRepository repository;
+    @Autowired
+    private PharmacieDeGardeService pharmacieDeGardeService;
 
     public Pharmacie addPharmacie(Pharmacie p){
         return repository.save(p);
@@ -86,6 +90,16 @@ public class PharmacieService {
 
     public List<Pharmacie> findAllPharmacieByZone(int id) {
         return repository.findAllPharmacieByZone(id);
+    }
+    public List<Pharmacie> findAllPharmacieByGarde(int id) {
+
+        List<Pharmacie> pharmacies = new ArrayList<>();
+        List<PharmacieDeGarde> pharmacieDeGardes = pharmacieDeGardeService.findAllPharmacieGardeEnGardeByGardeId(id);
+        for (PharmacieDeGarde p :pharmacieDeGardes) {
+            pharmacies.add(p.getPharmacie());
+        }
+        return pharmacies;
+
     }
 
     public List<Pharmacie> findAllPharmacieDispoByVille(int id) {
