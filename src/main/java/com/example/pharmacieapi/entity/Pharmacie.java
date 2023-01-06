@@ -28,7 +28,6 @@ public class Pharmacie {
 
 	@ManyToOne
 	@JoinColumn(name = "zone_id")
-	@JsonIgnore
 	private Zone zone;
 
 	@OneToMany(mappedBy = "pharmacie")

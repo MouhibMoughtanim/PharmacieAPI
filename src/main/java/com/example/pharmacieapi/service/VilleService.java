@@ -44,4 +44,8 @@ public class VilleService {
     public List findNbrPharmacieVille() {
         return repository.findNbrPharmacieVille();
     }
+
+    public List findNbrPharmacieEnGardeVille() {
+        return repository.findNbrPharmacieGardeVille();
+    }
 }
