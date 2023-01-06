@@ -52,4 +52,9 @@ public class VilleController {
 	public List findNbrPharmacieVille(){
 		return service.findNbrPharmacieVille();
 	}
+
+	@GetMapping("/NbrPharmacieEnGarde")
+	public List findNbrPharmacieEnGardeVille(){
+		return service.findNbrPharmacieEnGardeVille();
+	}
 }

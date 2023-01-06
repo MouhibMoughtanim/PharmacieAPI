@@ -20,4 +20,10 @@ public interface PharmacieDeGardeRepository extends JpaRepository<PharmacieDeGar
 
     @Query("select pg from PharmacieDeGarde pg where CURRENT_DATE BETWEEN pg.PharmacieDeGardeRelation.dateDebut and pg.dateFin ")
     List<PharmacieDeGarde> findAllPharmacieEnGarde();
+
+    @Query("select pg from PharmacieDeGarde pg where pg.pharmacie.zone.ville.id =:id and CURRENT_DATE BETWEEN pg.PharmacieDeGardeRelation.dateDebut and pg.dateFin")
+    List<PharmacieDeGarde> findAllPharmacieGardeByVille(@Param("id") int id);
+
+    @Query("select pg from PharmacieDeGarde pg where pg.pharmacie.zone.id =:id and CURRENT_DATE BETWEEN pg.PharmacieDeGardeRelation.dateDebut and pg.dateFin")
+    List<PharmacieDeGarde> findAllPharmacieGardeByZone(@Param("id") int id);
 }

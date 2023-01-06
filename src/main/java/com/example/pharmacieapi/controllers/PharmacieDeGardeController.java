@@ -129,6 +129,16 @@ public class PharmacieDeGardeController {
         }
         return pharmacieDeGardes ;
     }
+
+    @GetMapping("/EnGarde/ville={id}")
+    public List<PharmacieDeGarde> findPharmacieGardeByVille(@PathVariable int id){
+        return service.findAllPharmacieGardeByVille(id);
+    }
+
+    @GetMapping("/EnGarde/zone={id}")
+    public List<PharmacieDeGarde> findPharmacieGardeByZone(@PathVariable int id){
+        return service.findAllPharmacieGardeByZone(id);
+    }
     @GetMapping("/all/user_id={user_id}")
     public List<PharmacieDeGarde> getAllPharmaciesDeGardeByPharmacieId(@PathVariable int user_id) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
